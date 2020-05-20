@@ -1,1 +1,1 @@
-# Pokemmo-Pok-mon-Of-King
+# Pokemmo-Pokémon-Of-King
