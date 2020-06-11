@@ -38,34 +38,56 @@ void find_pokemon::control()
     vector<string> array;
     bool flag = false;
     show_area();
-    do
-    {
-        /*
-            TODO 
-            1 展示菜单
-            2 根据序号选取地区，查询类（virtual）继承实现查询不同地区
-            3 查询类单例实现（ORM）
-            4 每个地区一张表
-            5 
-        */
-    } while (!flag);
+    cout << ">";
+    cin >> ss;
+#pragma region cm
+// do
+// {
+//     /*
+//         TODO
+//         1 展示菜单
+//         2 根据序号选取地区，查询类（virtual）继承实现查询不同地区
+//         3 查询类单例实现（ORM）
+//         4 每个地区一张表
+//         5
+//     */
+// } while (!flag);
+#pragma endregion
+
     //find_pokemon_detail();
     vector<string>().swap(array);
 }
 
+/*
+    resetiosflags 重置输出mask标志位
+    setiosflags 设置输出mask位
+    std::ios::left right 修改填充字符的默认定位，left和right 可以应用到任何输出。
+    stew 更改输出下个输入\输出域的宽度 每次调用仅当次有效
+*/
 void find_pokemon::show_area()
 {
-    cout << "------------------------------------" << endl;
-    cout << setiosflags(ios::left) << setw(1) << "序号" << resetiosflags(ios::left) // 用完之后清除
-         << setiosflags(ios::right) << setw(34) << "地区" << setw(12)
-         << endl;
-    cout << "------------------------------------" << endl;
+    constexpr int num_width = 10;
+    constexpr int area_width = 11;
+    constexpr int uni_width = 12;
+    constexpr int total_with = num_width + area_width;
+    auto print_break = [] {
+        std::cout.width(total_with);
+        std::cout.fill('-');
+        std::cout << "-" << std::endl;
+        std::cout.fill(' ');
+    };
+    print_break();
+    cout << setiosflags(ios::left) << setw(uni_width) << "|序号"
+         << "|" << resetiosflags(ios::left) // 用完之后清除
+         << setiosflags(ios::left) << setw(area_width) << "地区"
+         << "|" << resetiosflags(ios::left) << endl;
+    print_break();
     string num[] = {"1", "2", "3", "4"};
     string area[] = {"关都", "丰缘", "合众", "神奥"};
     for (size_t i = 0; i < 4; i++)
     {
-        cout << setiosflags(ios::left) << setw(1) << num[i] << resetiosflags(ios::left)
-             << setiosflags(ios::right) << setw(37) << area[i] << endl;
+        cout << setiosflags(ios::left) << setw(num_width) << "|" + num[i] << "|" << resetiosflags(ios::left)
+             << setiosflags(ios::left) << setw(area_width) << area[i] << "|" << endl;
     }
-    cout << "------------------------------------" << endl;
+    print_break();
 }
