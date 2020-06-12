@@ -38,7 +38,7 @@ void find_pokemon::control()
     vector<string> array;
     bool flag = false;
     show_area();
-    cout << ">";
+    cout << ">>";
     cin >> ss;
 #pragma region cm
 // do
@@ -66,28 +66,44 @@ void find_pokemon::control()
 */
 void find_pokemon::show_area()
 {
-    constexpr int num_width = 10;
-    constexpr int area_width = 11;
-    constexpr int uni_width = 12;
-    constexpr int total_with = num_width + area_width;
+    constexpr int num_width = 12;
+    constexpr int area_width = 15;
+    // constexpr int uni_width = 17;
+    constexpr int colunm_size = 2;
+    constexpr int total_with = num_width + area_width + colunm_size;
+
     auto print_break = [] {
         std::cout.width(total_with);
         std::cout.fill('-');
         std::cout << "-" << std::endl;
         std::cout.fill(' ');
     };
+    using table_t = std::array<std::string, colunm_size>;
+    table_t headers{{"No", "Area"}};
+    //1关都2丰缘3合众4神奥
+    std::array<table_t, 4> data{
+        {{{"1", "Kanto region"}},
+         {{"2", "Hoenn region"}},
+         {{"3", "Unova region"}},
+         {{"4", "Sinnoh"}}}};
+    auto print_line = [](table_t const &tbl) {
+        auto const &[No, Area] = tbl;
+
+        cout.width(num_width);
+        cout << ("|" + No) << "|";
+
+        cout.width(area_width);
+        cout << (" " + Area) << "|";
+
+        cout << endl;
+    };
+    std::cout.setf(std::ios::left, std::ios::adjustfield);
     print_break();
-    cout << setiosflags(ios::left) << setw(uni_width) << "|序号"
-         << "|" << resetiosflags(ios::left) // 用完之后清除
-         << setiosflags(ios::left) << setw(area_width) << "地区"
-         << "|" << resetiosflags(ios::left) << endl;
+    print_line(headers);
     print_break();
-    string num[] = {"1", "2", "3", "4"};
-    string area[] = {"关都", "丰缘", "合众", "神奥"};
-    for (size_t i = 0; i < 4; i++)
+    for (auto const &entry : data)
     {
-        cout << setiosflags(ios::left) << setw(num_width) << "|" + num[i] << "|" << resetiosflags(ios::left)
-             << setiosflags(ios::left) << setw(area_width) << area[i] << "|" << endl;
+        print_line(entry);
     }
     print_break();
 }
