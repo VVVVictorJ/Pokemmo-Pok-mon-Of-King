@@ -18,6 +18,8 @@ public:
     void control();
     void show_area();
     void find_transaction(std::string str);
+    void show_icon();
+    void show_menu();
 };
 
 #endif

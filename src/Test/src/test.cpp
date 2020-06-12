@@ -18,7 +18,7 @@ int main()
     char ch;
     bool flag = false;
     find_pokemon find_pokemon;
-    cout << "POKEMMO 天王队查询系统" << endl;
+    //cout << "POKEMMO 天王队查询系统" << endl;
     find_pokemon.control();
     return 0;
 }
